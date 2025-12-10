@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exámenes de Brevete - Perú</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <h1>Brevete Perú</h1>
+                </div>
+                <nav class="nav">
+                    <button class="nav-btn active" data-section="home">
+                        <i class="fas fa-home"></i> Inicio
+                    </button>
+                    <button class="nav-btn" data-section="exam">
+                        <i class="fas fa-clipboard-list"></i> Examen
+                    </button>
+                    <button class="nav-btn" data-section="admin">
+                        <i class="fas fa-chart-line"></i> Dashboard
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <h2>Prepárate para tu Examen de Brevete</h2>
+                <p>Practica con preguntas reales del examen de conducir en Perú</p>
+                
+                <div class="vehicle-selection">
+                    <div class="vehicle-card" data-type="auto">
+                        <div class="vehicle-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <h3>Automóvil</h3>
+                        <p>Licencia Clase A-I, A-IIa, A-IIb</p>
+                        <button class="btn-primary">Comenzar Examen</button>
+                    </div>
+                    
+                    <div class="vehicle-card" data-type="moto">
+                        <div class="vehicle-icon">
+                            <i class="fas fa-motorcycle"></i>
+                        </div>
+                        <h3>Motocicleta</h3>
+                        <p>Licencia Clase A-I</p>
+                        <button class="btn-primary">Comenzar Examen</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Section -->
+        <section id="exam" class="section">
+            <div class="exam-container">
+                <div class="exam-header">
+                    <div class="exam-info">
+                        <h2 id="exam-title">Examen de Automóvil</h2>
+                        <div class="exam-stats">
+                            <span class="stat">
+                                <i class="fas fa-clock"></i>
+                                <span id="timer">30:00</span>
+                            </span>
+                            <span class="stat">
+                                <i class="fas fa-question-circle"></i>
+                                <span id="question-counter">1/20</span>
+                            </span>
+                            <span class="stat">
+                                <i class="fas fa-check-circle"></i>
+                                <span id="score">0 correctas</span>
+                            </span>
+                        </div>
+                    </div>
+                    <button class="btn-secondary" id="finish-exam">Finalizar Examen</button>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-card">
+                        <div class="question-number">Pregunta <span id="current-question">1</span></div>
+                        <div class="question-text" id="question-text">
+                            Cargando pregunta...
+                        </div>
+                        <div class="question-image" id="question-image" style="display: none;">
+                            <img src="" alt="Imagen de la pregunta">
+                        </div>
+                        <div class="options" id="options-container">
+                            <!-- Options will be loaded here -->
+                        </div>
+                        <div class="question-actions">
+                            <button class="btn-secondary" id="prev-question" disabled>
+                                <i class="fas fa-chevron-left"></i> Anterior
+                            </button>
+                            <button class="btn-primary" id="next-question" disabled>
+                                Siguiente <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress" id="exam-progress"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="admin" class="section">
+            <div class="dashboard-container">
+                <div class="dashboard-header">
+                    <h2>Dashboard - Resultados de Exámenes</h2>
+                    <button class="btn-secondary" id="clear-stats-btn">
+                        <i class="fas fa-trash"></i> Limpiar Historial
+                    </button>
+                </div>
+
+                <div class="stats-summary" id="stats-summary">
+                    <!-- Las estadísticas se cargarán aquí -->
+                </div>
+
+                <div class="stats-history">
+                    <h3>Historial Detallado de Exámenes</h3>
+                    <div class="history-list" id="history-list">
+                        <!-- El historial se cargará aquí -->
+                    </div>
+                </div>
+
+                <div class="questions-info">
+                    <h3>Base de Datos de Preguntas</h3>
+                    <div class="questions-stats" id="questions-stats">
+                        <!-- Estadísticas de preguntas se cargarán aquí -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Modal -->
+        <div class="modal" id="results-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Resultados del Examen</h2>
+                    <button class="close-modal" id="close-results">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="result-summary">
+                        <div class="result-score">
+                            <div class="score-circle">
+                                <span id="final-score">0</span>
+                                <small>/ 20</small>
+                            </div>
+                            <div class="score-percentage" id="score-percentage">0%</div>
+                        </div>
+                        <div class="result-status" id="result-status">
+                            <i class="fas fa-times-circle"></i>
+                            <span>No Aprobado</span>
+                        </div>
+                    </div>
+                    <div class="result-details">
+                        <p>Necesitas al menos 14 respuestas correctas para aprobar.</p>
+                        <div class="result-actions">
+                            <button class="btn-primary" id="retry-exam">Intentar de Nuevo</button>
+                            <button class="btn-secondary" id="back-home">Volver al Inicio</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="questions-database.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
